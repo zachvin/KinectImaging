@@ -20,12 +20,13 @@ while True:
     y = int(img.shape[1]/2)
 
     dist = depth_data[y,x]
-    print(dist)
     
     cv2.circle(img,center=(y,x),radius=10,color=(0,255,0),thickness=-1)
     cv2.putText(img,text=str(dist),org=(10,50),fontFace=cv2.FONT_HERSHEY_SIMPLEX,fontScale=1,color=(255,255,255),thickness=2)
+
+    thresh,ret = cv2.threshold(img,500,1600,cv2.THRESH_BINARY)
     
-    cv2.imshow('Depth',img)  
+    cv2.imshow('Depth',thresh)  
 
   k = cv2.waitKey(1)
   if k == 27:
